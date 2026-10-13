@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Serve ChatGPT Ads Launch Checklist (2026) — 10 Steps</title>
+    <meta name="description" content="Launching your first self-serve ChatGPT Ads campaign? The 10-point pre-launch checklist: account setup, landing page crawlability, policy scan, context hints, and budget guardrails.">
+    <link rel="canonical" href="https://adsbot-inspector.com/guide/chatgpt-ads-self-serve-checklist">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Self-Serve ChatGPT Ads: The 10-Point Launch Checklist">
+    <meta property="og:description" content="Everything to verify before your first ChatGPT Ads campaign goes live.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://adsbot-inspector.com/guide/chatgpt-ads-self-serve-checklist">
+    <meta property="og:site_name" content="AdBot Inspector">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+            colors: { brand: { 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' } } } } }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Self-Serve ChatGPT Ads Launch Checklist",
+      "author": { "@type": "Organization", "name": "AdBot Inspector" },
+      "publisher": { "@type": "Organization", "name": "AdBot Inspector" },
+      "mainEntityOfPage": "https://adsbot-inspector.com/guide/chatgpt-ads-self-serve-checklist",
+      "about": ["ChatGPT Ads", "self-serve advertising", "checklist"]
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+<nav class="border-b bg-white">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="https://adsbot-inspector.com/" class="font-bold text-brand-700">🔍 AdBot Inspector</a>
+        <a href="https://adsbot-inspector.com/" class="text-sm bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700">Run a free inspection</a>
+    </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-4 py-10">
+    <p class="text-sm text-slate-500 mb-2">Guide · Updated October 2026</p>
+    <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">Self-Serve ChatGPT Ads: The 10-Point Launch Checklist</h1>
+    <p class="text-lg text-slate-600 mb-8">ChatGPT Ads opened self-serve buying with no minimum spend in May 2026, in 40+ countries. The barrier to entry is now one credit card — which is exactly why most wasted spend happens <em>before</em> the campaign even goes live. Run this checklist first.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-4">A. Account &amp; targeting (do once)</h2>
+    <ol class="space-y-3 mb-6">
+        <li class="bg-white border rounded-lg p-4"><strong>1. Business account verified.</strong> Set up billing before campaign day; rejected payment at launch loses your review slot.</li>
+        <li class="bg-white border rounded-lg p-4"><strong>2. Country availability confirmed.</strong> The platform rolled out through 2026 and coverage still varies — confirm your target market is live before writing copy.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold mt-10 mb-4">B. Landing page (where ads die quietly)</h2>
+    <ol class="space-y-3 mb-6" start="3">
+        <li class="bg-white border rounded-lg p-4"><strong>3. Crawler can reach the page.</strong> Your WAF/CDN must not challenge OAI-AdsBot — see the <a class="text-brand-700 underline" href="https://adsbot-inspector.com/guide/cloudflare-chatgpt-ads">Cloudflare guide</a> if in doubt.</li>
+        <li class="bg-white border rounded-lg p-4"><strong>4. Content in raw HTML.</strong> Title, meta description, H1 and body copy must exist without JavaScript. Client-side rendered SPAs read as blank pages to the crawler.</li>
+        <li class="bg-white border rounded-lg p-4"><strong>5. robots.txt allows OAI-AdsBot and OAI-SearchBot.</strong> OpenAI's advertiser guidance requires both.</li>
+        <li class="bg-white border rounded-lg p-4"><strong>6. Policy scan clean.</strong> No prohibited categories, no OpenAI branding, no "guaranteed income / miracle cure / only 3 left" claim patterns. Details in <a class="text-brand-700 underline" href="https://adsbot-inspector.com/guide/chatgpt-ads-rejected-fix">7 rejection reasons</a>.</li>
+    </ol>
+    <div class="bg-brand-50 border border-brand-500 rounded-lg p-4 mb-6 text-sm">
+        💡 Steps 3–6 are exactly what <a class="text-brand-700 underline font-semibold" href="https://adsbot-inspector.com/">AdBot Inspector</a> checks in one pass — a full report in ~10 seconds, free.
+    </div>
+
+    <h2 class="text-2xl font-bold mt-10 mb-4">C. Creative &amp; relevance</h2>
+    <ol class="space-y-3 mb-6" start="7">
+        <li class="bg-white border rounded-lg p-4"><strong>7. Ad mirrors the page.</strong> The core promise in your ad title/body must appear (in substance) in the page's H1/meta/copy. End-to-end consistency is a review criterion.</li>
+        <li class="bg-white border rounded-lg p-4"><strong>8. Context hints filled with real keywords.</strong> Don't leave the field empty or stuff it. Use the phrases your page genuinely targets — a good scanner can suggest them from your page content.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold mt-10 mb-4">D. Money</h2>
+    <ol class="space-y-3 mb-6" start="9">
+        <li class="bg-white border rounded-lg p-4"><strong>9. Budget sized to the channel.</strong> Observed 2026 pricing runs roughly $25–60 CPM and $3–5 CPC depending on market. Size a test budget you can spend 3–5× before judging results.</li>
+        <li class="bg-white border rounded-lg p-4"><strong>10. Success metric written down.</strong> Before launch, write the number that decides scale-up vs. stop (signup, trial, purchase). Conversational ad slots don't behave like search — judge on your metric, not on CTR alone.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">The 60-second version</h2>
+    <p class="mb-6 leading-relaxed">Verified billing ✓ → page crawlable ✓ → policy clean ✓ → ad matches page ✓ → hints real ✓ → test budget + decision metric ✓. Anything uncertain in the middle four, <a class="text-brand-700 underline font-semibold" href="https://adsbot-inspector.com/">run the free inspection</a> and fix the report's action list first.</p>
+
+    <div class="bg-white border rounded-xl p-6 text-center my-8">
+        <p class="font-semibold mb-3">Knock out checklist items 3–6 in one scan</p>
+        <a href="https://adsbot-inspector.com/" class="inline-block bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 font-semibold">Run your pre-launch inspection →</a>
+        <p class="text-xs text-slate-400 mt-2">Free · no signup · works on any landing page</p>
+    </div>
+</article>
+
+<footer class="border-t mt-12 py-6 text-center text-sm text-slate-400">
+    <a href="https://adsbot-inspector.com/" class="hover:text-slate-600">AdBot Inspector</a> · Free OAI-AdsBot pre-check for ChatGPT Ads
+</footer>
+</body>
+</html>

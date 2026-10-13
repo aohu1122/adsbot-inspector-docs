@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Ads Rejected? 7 Reasons &amp; Fixes (2026 Guide)</title>
+    <meta name="description" content="Why ChatGPT Ads get stuck in review or silently rejected: WAF blocking, JS shells, robots.txt, prohibited categories, impersonation, misleading claims, and relevance gaps — with fixes for each.">
+    <link rel="canonical" href="https://adsbot-inspector.com/guide/chatgpt-ads-rejected-fix">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="ChatGPT Ads Rejected? 7 Reasons &amp; How to Fix Them">
+    <meta property="og:description" content="The 7 reasons ChatGPT Ads fail review — and a fix for each one.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://adsbot-inspector.com/guide/chatgpt-ads-rejected-fix">
+    <meta property="og:site_name" content="AdBot Inspector">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+            colors: { brand: { 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' } } } } }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "ChatGPT Ads Rejected? 7 Reasons & Fixes",
+      "author": { "@type": "Organization", "name": "AdBot Inspector" },
+      "publisher": { "@type": "Organization", "name": "AdBot Inspector" },
+      "mainEntityOfPage": "https://adsbot-inspector.com/guide/chatgpt-ads-rejected-fix",
+      "about": ["ChatGPT Ads", "ad rejection", "OAI-AdsBot"]
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+<nav class="border-b bg-white">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="https://adsbot-inspector.com/" class="font-bold text-brand-700">🔍 AdBot Inspector</a>
+        <a href="https://adsbot-inspector.com/" class="text-sm bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700">Run a free inspection</a>
+    </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-4 py-10">
+    <p class="text-sm text-slate-500 mb-2">Guide · Updated October 2026</p>
+    <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">ChatGPT Ads Rejected? The 7 Real Reasons (and How to Fix Each)</h1>
+    <p class="text-lg text-slate-600 mb-8">Since ChatGPT Ads went self-serve, most rejections we see trace back to the same seven causes. Six of them you can find and fix yourself — before resubmitting.</p>
+
+    <div class="overflow-x-auto mb-8">
+    <table class="w-full text-sm border">
+        <tr class="bg-slate-100 text-left"><th class="p-3">#</th><th class="p-3">Cause</th><th class="p-3">Detected by AdBot Inspector?</th></tr>
+        <tr class="border-t"><td class="p-3">1</td><td class="p-3">WAF/CDN blocks OAI-AdsBot</td><td class="p-3">✅</td></tr>
+        <tr class="border-t"><td class="p-3">2</td><td class="p-3">JS-only shell page</td><td class="p-3">✅</td></tr>
+        <tr class="border-t"><td class="p-3">3</td><td class="p-3">robots.txt disallows the crawler</td><td class="p-3">✅</td></tr>
+        <tr class="border-t"><td class="p-3">4</td><td class="p-3">Prohibited-category content</td><td class="p-3">✅</td></tr>
+        <tr class="border-t"><td class="p-3">5</td><td class="p-3">OpenAI/ChatGPT impersonation</td><td class="p-3">✅</td></tr>
+        <tr class="border-t"><td class="p-3">6</td><td class="p-3">Misleading claims</td><td class="p-3">✅</td></tr>
+        <tr class="border-t"><td class="p-3">7</td><td class="p-3">Ad–landing relevance mismatch</td><td class="p-3">✅</td></tr>
+    </table>
+    </div>
+
+    <h2 class="text-2xl font-bold mt-10 mb-2">1. Your WAF blocks OAI-AdsBot</h2>
+    <p class="mb-3 leading-relaxed"><strong>Symptom:</strong> ad stuck in "pending review" forever, or rejected with no detail. <strong>Why:</strong> Cloudflare, Akamai, DataDome, and Imperva challenge unknown crawlers; OpenAI publishes no IP allowlist for OAI-AdsBot, so default bot rules can block it. <strong>Fix:</strong> add a rule allowing the <code class="bg-slate-100 px-1 rounded">OAI-AdsBot</code> and <code class="bg-slate-100 px-1 rounded">OAI-SearchBot</code> user-agents at your WAF, and verify with a crawl simulation (see the tool below).</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-2">2. Your page is a JavaScript shell</h2>
+    <p class="mb-3 leading-relaxed"><strong>Symptom:</strong> ad approved but relevance/quality seems inexplicably low. <strong>Why:</strong> a client-side rendered SPA hands crawlers an empty skeleton. Assume OAI-AdsBot does not execute JS. <strong>Fix:</strong> server-side render your landing page, or ship a static pre-render, so title/H1/copy exist in raw HTML.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-2">3. robots.txt says no</h2>
+    <p class="mb-3 leading-relaxed"><strong>Symptom:</strong> same as #1 — a crawl that never happens. <strong>Why:</strong> broad bot disallow rules inherited from an old anti-scraping policy. <strong>Fix:</strong> explicitly allow OAI-AdsBot and OAI-SearchBot. OpenAI's advertiser guidance requires both to be reachable.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-2">4. Prohibited-category content</h2>
+    <p class="mb-3 leading-relaxed"><strong>Why:</strong> OpenAI's ad policies prohibit (or restrict) categories like adult content, alcohol, tobacco/vaping, gambling, firearms, political campaigning, crypto ICOs, high-risk financial services, and prescription/medical claims. Even adjacent wording can trigger a manual look. <strong>Fix:</strong> remove or reframe the category content; if your business is genuinely in a restricted category, expect limited or no eligibility rather than a workaround.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-2">5. OpenAI / ChatGPT impersonation</h2>
+    <p class="mb-3 leading-relaxed"><strong>Why:</strong> branding your page as "ChatGPT-powered by OpenAI" when you're not is a critical violation. Detection scans title, meta, H1, and URL. <strong>Fix:</strong> remove OpenAI trademarks from identity elements; describe the tech you actually use.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-2">6. Misleading claims</h2>
+    <p class="mb-3 leading-relaxed"><strong>Why:</strong> guaranteed-income promises, miracle cures, fake urgency ("only 3 left!"), unverifiable media endorsements, specific income/weight-loss figures. These get pattern-matched at review. <strong>Fix:</strong> delete unverifiable superlatives; keep claims concrete and provable.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-2">7. Ad–landing mismatch</h2>
+    <p class="mb-3 leading-relaxed"><strong>Why:</strong> your ad promises "24/7 AI bookkeeping" but the landing page never mentions bookkeeping. OpenAI checks end-to-end consistency between ad copy, context hints, and page content — title, meta description, and H1 carry the most weight. <strong>Fix:</strong> mirror your ad's core promise in the H1 and meta description, and use the context-hints field for your true target keywords. (Our tool generates suggested context hints from your page automatically.)</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Check all 7 in one pass</h2>
+    <p class="mb-6 leading-relaxed"><a class="text-brand-700 underline font-semibold" href="https://adsbot-inspector.com/">AdBot Inspector</a> simulates the OAI-AdsBot crawl, runs a policy scan across prohibited categories, impersonation, and misleading-claim patterns, and scores your ad–landing relevance — producing a fix list before you resubmit. Start with our <a class="text-brand-700 underline" href="https://adsbot-inspector.com/guide/oai-adsbot-complete-guide">complete OAI-AdsBot guide</a> if you're new to the crawler.</p>
+
+    <div class="bg-white border rounded-xl p-6 text-center my-8">
+        <p class="font-semibold mb-3">Find out which of the 7 is hitting your page</p>
+        <a href="https://adsbot-inspector.com/" class="inline-block bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 font-semibold">Run a free inspection →</a>
+        <p class="text-xs text-slate-400 mt-2">No signup. Detailed report in ~10 seconds.</p>
+    </div>
+</article>
+
+<footer class="border-t mt-12 py-6 text-center text-sm text-slate-400">
+    <a href="https://adsbot-inspector.com/" class="hover:text-slate-600">AdBot Inspector</a> · Free OAI-AdsBot pre-check for ChatGPT Ads
+</footer>
+</body>
+</html>

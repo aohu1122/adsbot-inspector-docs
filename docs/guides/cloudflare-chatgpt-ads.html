@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Cloudflare Blocking ChatGPT Ads? How to Check &amp; Fix (2026)</title>
+    <meta name="description" content="Cloudflare Bot Fight Mode and WAF rules can block OAI-AdsBot and fail your ChatGPT Ads review. How to confirm it in your firewall logs and write an allow rule — with copy-paste expressions.">
+    <link rel="canonical" href="https://adsbot-inspector.com/guide/cloudflare-chatgpt-ads">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Is Cloudflare Blocking ChatGPT Ads From Reviewing Your Page?">
+    <meta property="og:description" content="Bot Fight Mode and WAF defaults can block OAI-AdsBot. Here's how to confirm and fix it.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://adsbot-inspector.com/guide/cloudflare-chatgpt-ads">
+    <meta property="og:site_name" content="AdBot Inspector">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+            colors: { brand: { 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' } } } } }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Is Cloudflare Blocking ChatGPT Ads? How to Check & Fix",
+      "author": { "@type": "Organization", "name": "AdBot Inspector" },
+      "publisher": { "@type": "Organization", "name": "AdBot Inspector" },
+      "mainEntityOfPage": "https://adsbot-inspector.com/guide/cloudflare-chatgpt-ads",
+      "about": ["Cloudflare", "ChatGPT Ads", "OAI-AdsBot", "WAF"]
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+<nav class="border-b bg-white">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="https://adsbot-inspector.com/" class="font-bold text-brand-700">🔍 AdBot Inspector</a>
+        <a href="https://adsbot-inspector.com/" class="text-sm bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700">Run a free inspection</a>
+    </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-4 py-10">
+    <p class="text-sm text-slate-500 mb-2">Guide · Updated October 2026</p>
+    <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">Your Cloudflare Settings May Be Silently Failing Your ChatGPT Ads</h1>
+    <p class="text-lg text-slate-600 mb-8">OpenAI's ad crawler OAI-AdsBot has no published IP ranges, so Cloudflare's bot defenses can challenge or block it like any unknown bot. A blocked crawl usually means a failed review — and Cloudflare won't email you about it. Here's how to confirm and fix it.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Why Cloudflare blocks a crawler you want</h2>
+    <p class="mb-4 leading-relaxed">Cloudflare protects millions of sites with layered bot management. Three features most often collide with ad crawlers:</p>
+    <ul class="space-y-3 mb-6">
+        <li class="bg-white border rounded-lg p-4"><strong>Bot Fight Mode</strong> (Security → Bots) — automatically challenges "definitely automated" traffic. Great against scrapers, blind to whether the bot is one you <em>want</em>.</li>
+        <li class="bg-white border rounded-lg p-4"><strong>Security Level "High" or "I'm Under Attack"</strong> — issues JS challenges that non-browser crawlers cannot solve.</li>
+        <li class="bg-white border rounded-lg p-4"><strong>Custom WAF rules / managed rulesets</strong> — broad "block all bots" or geo/ASN rules that accidentally match crawlers.</li>
+    </ul>
+    <p class="mb-4 leading-relaxed">Because OpenAI publishes an IP list for GPTBot and OAI-SearchBot but <strong>not</strong> for OAI-AdsBot, IP-based allowlists don't help here. The reliable lever is the user-agent — verified by reverse-DNS on OpenAI's side.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Step 1 — Confirm it's actually happening</h2>
+    <p class="mb-3 leading-relaxed">Two minutes in the Cloudflare dashboard:</p>
+    <ol class="list-decimal pl-6 space-y-2 mb-4 leading-relaxed">
+        <li>Go to <strong>Security → Events</strong> and filter by user agent contains <code class="bg-slate-100 px-1 rounded">OAI-AdsBot</code>.</li>
+        <li>Look for <code class="bg-slate-100 px-1 rounded">BLOCK</code> or <code class="bg-slate-100 px-1 rounded">MANAGED_CHALLENGE</code> actions on your landing page URL around the time you submitted the ad.</li>
+    </ol>
+    <p class="mb-4 leading-relaxed">No events logged? The faster external check is a crawl simulation: <a class="text-brand-700 underline" href="https://adsbot-inspector.com/">AdBot Inspector</a> fetches your page with the exact OAI-AdsBot user-agent and reports whether a WAF signature (Cloudflare included) intercepted it — no dashboard access required.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Step 2 — Write the allow rule</h2>
+    <p class="mb-3 leading-relaxed">In <strong>Security → WAF → Custom rules → Create rule</strong>, add an exception that runs <em>before</em> your blocking rules:</p>
+    <pre class="bg-slate-900 text-slate-100 text-xs p-4 rounded-lg overflow-x-auto mb-3">(http.user_agent contains "OAI-AdsBot") or (http.user_agent contains "OAI-SearchBot")</pre>
+    <p class="mb-3 leading-relaxed">Set the action to <strong>Skip</strong> (all remaining custom rules) — or at minimum <strong>Allow</strong> if your plan lacks Skip. If you use Zone Lockdown or IP access rules on the landing path, note they evaluate before custom rules; move the allowlist into the lockdown exception instead.</p>
+    <p class="mb-4 leading-relaxed">If Bot Fight Mode is on, be aware it sits outside custom rules on some plans — the practical combination most sites land on: <em>Bot Fight Mode off</em>, Super Bot Fight Mode (paid) with "verified bots allowed", plus the custom allow rule above.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Not on Cloudflare? Same story elsewhere</h2>
+    <div class="overflow-x-auto mb-6">
+    <table class="w-full text-sm border">
+        <tr class="bg-slate-100 text-left"><th class="p-3">WAF</th><th class="p-3">Where to allow OAI-AdsBot</th></tr>
+        <tr class="border-t"><td class="p-3 font-semibold">Akamai</td><td class="p-3">App &amp; API Protector → Bot Manager → add UA to allowlisted bots</td></tr>
+        <tr class="border-t"><td class="p-3 font-semibold">DataDome</td><td class="p-3">Dashboard → Bot Management → custom allow rule on user agent</td></tr>
+        <tr class="border-t"><td class="p-3 font-semibold">Imperva</td><td class="p-3">Policies → Access Control → exception for the UA</td></tr>
+        <tr class="border-t"><td class="p-3 font-semibold">Nginx / Apache</td><td class="p-3">Check <code class="bg-slate-100 px-1 rounded">limit_req</code> / mod_security rules for 403s on bot UAs</td></tr>
+    </table>
+    </div>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Step 3 — Verify the fix before resubmitting</h2>
+    <p class="mb-6 leading-relaxed">Run the inspection again: the report should show the page reachable with the AdsBot user-agent (HTTP 200, no challenge markers). Then resubmit the ad. For the full picture of what the crawler checks beyond reachability, see our <a class="text-brand-700 underline" href="https://adsbot-inspector.com/guide/oai-adsbot-complete-guide">OAI-AdsBot complete guide</a> and the <a class="text-brand-700 underline" href="https://adsbot-inspector.com/guide/chatgpt-ads-rejected-fix">7 rejection reasons</a>.</p>
+
+    <div class="bg-white border rounded-xl p-6 text-center my-8">
+        <p class="font-semibold mb-3">Is your WAF blocking OAI-AdsBot right now?</p>
+        <a href="https://adsbot-inspector.com/" class="inline-block bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 font-semibold">Test your page free →</a>
+        <p class="text-xs text-slate-400 mt-2">Detects Cloudflare, Akamai, DataDome &amp; Imperva blocks in ~10 seconds.</p>
+    </div>
+</article>
+
+<footer class="border-t mt-12 py-6 text-center text-sm text-slate-400">
+    <a href="https://adsbot-inspector.com/" class="hover:text-slate-600">AdBot Inspector</a> · Free OAI-AdsBot pre-check for ChatGPT Ads
+</footer>
+</body>
+</html>

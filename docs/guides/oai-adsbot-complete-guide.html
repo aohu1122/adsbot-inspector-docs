@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAI-AdsBot: The Complete Guide for ChatGPT Ads Advertisers (2026)</title>
+    <meta name="description" content="What OAI-AdsBot is, what it checks, and how to make your landing page visible to OpenAI's ad crawler. Includes the UA string, robots.txt rules, and a pre-submission checklist.">
+    <link rel="canonical" href="https://adsbot-inspector.com/guide/oai-adsbot-complete-guide">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="OAI-AdsBot: The Complete Guide for ChatGPT Ads Advertisers">
+    <meta property="og:description" content="What OpenAI's ad crawler checks, why pages are invisible to it, and how to fix that before submitting your ad.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://adsbot-inspector.com/guide/oai-adsbot-complete-guide">
+    <meta property="og:site_name" content="AdBot Inspector">
+    <meta name="twitter:card" content="summary">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+            colors: { brand: { 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' } } } } }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "OAI-AdsBot: The Complete Guide for ChatGPT Ads Advertisers",
+      "author": { "@type": "Organization", "name": "AdBot Inspector" },
+      "publisher": { "@type": "Organization", "name": "AdBot Inspector" },
+      "mainEntityOfPage": "https://adsbot-inspector.com/guide/oai-adsbot-complete-guide",
+      "about": ["OAI-AdsBot", "ChatGPT Ads", "landing page compliance"]
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+<nav class="border-b bg-white">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="https://adsbot-inspector.com/" class="font-bold text-brand-700">🔍 AdBot Inspector</a>
+        <a href="https://adsbot-inspector.com/" class="text-sm bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-700">Run a free inspection</a>
+    </div>
+</nav>
+
+<article class="max-w-3xl mx-auto px-4 py-10">
+    <p class="text-sm text-slate-500 mb-2">Guide · Updated October 2026</p>
+    <h1 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">OAI-AdsBot: The Complete Guide for ChatGPT Ads Advertisers</h1>
+    <p class="text-lg text-slate-600 mb-8">Everything OpenAI has documented about its ad crawler — plus what it means for your landing page, and how to check yours in 10 seconds.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">What is OAI-AdsBot?</h2>
+    <p class="mb-4 leading-relaxed">OAI-AdsBot is the web crawler OpenAI sends to <strong>every landing page submitted through ChatGPT Ads</strong>. When you create a campaign in the Ads Manager, OpenAI visits your page to verify three things before your ad can serve:</p>
+    <ol class="list-decimal pl-6 mb-4 space-y-2 leading-relaxed">
+        <li><strong>Safety &amp; policy compliance</strong> — does the page violate OpenAI's advertising policies?</li>
+        <li><strong>Content relevance</strong> — does the page match your ad copy and context hints?</li>
+        <li><strong>Quality signals</strong> — is the page real, reachable content (not an error page or an empty shell)?</li>
+    </ol>
+    <p class="mb-4 leading-relaxed">It announces itself with this user-agent string:</p>
+    <pre class="bg-slate-900 text-slate-100 text-xs p-4 rounded-lg overflow-x-auto mb-4">Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; OAI-AdsBot/1.0; +https://openai.com/adsbot</pre>
+    <p class="mb-4 leading-relaxed">OpenAI formally added OAI-AdsBot to its public crawler documentation in April 2026, as ChatGPT Ads rolled out from its February 2026 US launch to 40+ countries. Since May 2026 the platform is fully self-serve with no minimum spend — which means thousands of first-time advertisers are now meeting this crawler, often without knowing it exists.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">How OAI-AdsBot differs from GPTBot and OAI-SearchBot</h2>
+    <p class="mb-4 leading-relaxed">OpenAI operates several crawlers, and conflating them causes real mistakes:</p>
+    <div class="overflow-x-auto mb-4">
+    <table class="w-full text-sm border">
+        <tr class="bg-slate-100 text-left"><th class="p-3">Crawler</th><th class="p-3">Visits</th><th class="p-3">Purpose</th><th class="p-3">Data used for training?</th></tr>
+        <tr class="border-t"><td class="p-3"><strong>GPTBot</strong></td><td class="p-3">The open web</td><td class="p-3">LLM training</td><td class="p-3">Yes</td></tr>
+        <tr class="border-t"><td class="p-3"><strong>OAI-SearchBot</strong></td><td class="p-3">The open web</td><td class="p-3">Search answers &amp; citations</td><td class="p-3">No</td></tr>
+        <tr class="border-t"><td class="p-3"><strong>OAI-AdsBot</strong></td><td class="p-3"><strong>Only pages submitted as ads</strong></td><td class="p-3">Ad review &amp; relevance</td><td class="p-3">No</td></tr>
+    </table>
+    </div>
+    <p class="mb-4 leading-relaxed">Key takeaway: OAI-AdsBot only visits pages you explicitly submit. If your ad is stuck in review or was silently rejected, this crawler's experience of your page is the first thing to investigate.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Why your page may be invisible to OAI-AdsBot</h2>
+    <p class="mb-4 leading-relaxed">The most common failure mode isn't a policy violation — it's that <strong>the crawler never saw your real page</strong>. Three culprits account for most cases:</p>
+
+    <h3 class="text-xl font-semibold mt-6 mb-2">1. Your WAF or CDN blocks it</h3>
+    <p class="mb-4 leading-relaxed">Cloudflare, Akamai, DataDome, and Imperva all classify unknown crawlers as bot traffic. Because OpenAI publishes no IP range list for OAI-AdsBot (unlike its other crawlers), bot-protection defaults can challenge or block it. OpenAI's Help Center explicitly requires that landing pages not block OAI-AdsBot — a blocked crawl generally means a failed review.</p>
+
+    <h3 class="text-xl font-semibold mt-6 mb-2">2. Your page is a JavaScript-only shell</h3>
+    <p class="mb-4 leading-relaxed">If your site is a client-side rendered SPA, a crawler that doesn't execute JavaScript sees an empty skeleton — no headline, no copy, nothing to score for relevance. Treat OAI-AdsBot as if it does not run JS: your key content (title, meta description, H1, body copy) must be present in the server-delivered HTML.</p>
+
+    <h3 class="text-xl font-semibold mt-6 mb-2">3. robots.txt disallows it</h3>
+    <p class="mb-4 leading-relaxed">OpenAI's guidance for advertisers is to allow both OAI-AdsBot and OAI-SearchBot in robots.txt. A blanket <code class="bg-slate-100 px-1 rounded">Disallow: /</code> or an overly broad bot rule can take your own landing page out of the running.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">Pre-submission checklist</h2>
+    <ul class="space-y-2 mb-6">
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">✓</span> Landing page returns HTTP 200 to OAI-AdsBot's user-agent (no challenge page, no 403)</li>
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">✓</span> Title, meta description, H1, and main copy are in the raw HTML</li>
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">✓</span> robots.txt does not disallow OAI-AdsBot or OAI-SearchBot</li>
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">✓</span> Page content genuinely matches your ad title, body, and context hints</li>
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">✓</span> No prohibited-category content (see our <a class="text-brand-700 underline" href="https://adsbot-inspector.com/guide/chatgpt-ads-rejected-fix">rejection reasons guide</a>)</li>
+        <li class="flex gap-2"><span class="text-brand-600 font-bold">✓</span> Redirect chain is short and the final URL is what you submitted</li>
+    </ul>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">How to test all of this in 10 seconds</h2>
+    <p class="mb-6 leading-relaxed">The fastest way is to simulate the crawl. <a class="text-brand-700 underline font-semibold" href="https://adsbot-inspector.com/">AdBot Inspector</a> fetches your page with the exact OAI-AdsBot user-agent, alongside a normal browser view and a robots.txt check, then reports whether your page is visible, what a policy scan finds, and how relevant your page is to your ad copy — before you spend a dollar on review cycles.</p>
+
+    <div class="bg-white border rounded-xl p-6 text-center my-8">
+        <p class="font-semibold mb-3">Check your landing page against the real OAI-AdsBot user-agent</p>
+        <a href="https://adsbot-inspector.com/" class="inline-block bg-brand-600 text-white px-6 py-3 rounded-lg hover:bg-brand-700 font-semibold">Run a free inspection →</a>
+        <p class="text-xs text-slate-400 mt-2">No signup. 10 requests per hour.</p>
+    </div>
+
+    <h2 class="text-2xl font-bold mt-10 mb-3">FAQ</h2>
+    <div class="space-y-4">
+        <details class="bg-white border rounded-lg p-4"><summary class="font-semibold cursor-pointer">Does OAI-AdsBot crawl my whole site?</summary><p class="mt-2 text-slate-600">No. It only visits URLs submitted as ad landing pages, on demand.</p></details>
+        <details class="bg-white border rounded-lg p-4"><summary class="font-semibold cursor-pointer">Is my content used to train OpenAI models?</summary><p class="mt-2 text-slate-600">No. OpenAI states OAI-AdsBot data is not used for model training.</p></details>
+        <details class="bg-white border rounded-lg p-4"><summary class="font-semibold cursor-pointer">How do I verify a request really is OAI-AdsBot?</summary><p class="mt-2 text-slate-600">Reverse DNS: the hostname should end in <code class="bg-slate-100 px-1 rounded">openai.com</code>. There is no public IP list.</p></details>
+        <details class="bg-white border rounded-lg p-4"><summary class="font-semibold cursor-pointer">My page is fine — why was my ad still rejected?</summary><p class="mt-2 text-slate-600">Crawlability is necessary but not sufficient. See our <a class="text-brand-700 underline" href="https://adsbot-inspector.com/guide/chatgpt-ads-rejected-fix">7 rejection reasons guide</a> for policy and relevance causes.</p></details>
+    </div>
+</article>
+
+<footer class="border-t mt-12 py-6 text-center text-sm text-slate-400">
+    <a href="https://adsbot-inspector.com/" class="hover:text-slate-600">AdBot Inspector</a> · Free OAI-AdsBot pre-check for ChatGPT Ads
+</footer>
+</body>
+</html>
